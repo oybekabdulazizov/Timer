@@ -9,6 +9,7 @@ class Timer {
       this.onPause = callbacks.onPause;
       this.onResume = callbacks.onResume;
       this.onComplete = callbacks.onComplete;
+      this.onCancel = callbacks.onCancel;
     }
 
     this.startButton.addEventListener('click', this.start);
@@ -16,11 +17,27 @@ class Timer {
   }
 
   start = () => {
-    if (this.onStart) {
-      this.onStart();
+    if (this.startButton.innerText === 'Start') {
+      if (this.onStart) {
+        this.onStart();
+      }
+      this.tick();
+      this.interval = setInterval(this.tick, 1000);
+      this.startButton.id = 'cancel';
+      this.startButton.innerText = 'Cancel';
+    } else {
+      this.cancel();
     }
-    this.tick();
-    this.interval = setInterval(this.tick, 1000);
+  };
+
+  cancel = () => {
+    if (this.onCancel) {
+      this.onCancel();
+    }
+    this.stopInterval();
+    this.durationInput.value = 0;
+    this.startButton.setAttribute('id', 'start');
+    this.startButton.innerText = 'Start';
   };
 
   pause = () => {

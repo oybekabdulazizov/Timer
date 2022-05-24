@@ -19,4 +19,7 @@ const timer = new Timer(durationInput, startButton, pauseButton, {
   onComplete() {
     console.log('Timer complete');
   },
+  onCancel() {
+    console.log('Timer cancelled');
+  },
 });
