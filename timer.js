@@ -19,7 +19,7 @@ class Timer {
   start = () => {
     if (this.startButton.innerText === 'Start') {
       if (this.onStart) {
-        this.onStart();
+        this.onStart(this.timeRemaining);
       }
       this.tick();
       this.interval = setInterval(this.tick, 50);
@@ -71,11 +71,12 @@ class Timer {
       this.stopInterval();
       if (this.onComplete) {
         this.onComplete();
+        this.Cancel();
       }
     } else {
       this.timeRemaining = this.timeRemaining - 0.05;
       if (this.onTick) {
-        this.onTick();
+        this.onTick(this.timeRemaining);
       }
     }
   };
