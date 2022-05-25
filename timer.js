@@ -12,6 +12,7 @@ class Timer {
       this.onCancel = callbacks.onCancel;
     }
 
+    this.pauseButton.style.display = 'none';
     this.startButton.addEventListener('click', this.start);
     this.pauseButton.addEventListener('click', this.pause);
   }
@@ -25,6 +26,7 @@ class Timer {
       this.interval = setInterval(this.tick, 50);
       this.startButton.id = 'cancel';
       this.startButton.innerText = 'Cancel';
+      this.pauseButton.style.display = '';
     } else {
       this.cancel();
     }
@@ -38,6 +40,7 @@ class Timer {
     this.durationInput.value = 0;
     this.startButton.setAttribute('id', 'start');
     this.startButton.innerText = 'Start';
+    this.pauseButton.style.display = 'none';
   };
 
   pause = () => {
@@ -71,7 +74,7 @@ class Timer {
       this.stopInterval();
       if (this.onComplete) {
         this.onComplete();
-        this.Cancel();
+        this.cancel();
       }
     } else {
       this.timeRemaining = this.timeRemaining - 0.05;

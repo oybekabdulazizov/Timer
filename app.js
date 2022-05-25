@@ -13,10 +13,15 @@ const timer = new Timer(durationInput, startButton, pauseButton, {
     duration = totalDuration;
   },
   onTick(timeRemaining) {
-    circle.setAttribute(
-      'stroke-dashoffset',
-      (perimeter * timeRemaining) / duration - perimeter
-    );
+    let strokeDashOffset = (perimeter * timeRemaining) / duration - perimeter;
+    circle.setAttribute('stroke-dashoffset', strokeDashOffset);
+    console.log('timeRemaining: ', timeRemaining);
+
+    if (timeRemaining <= 5) {
+      circle.setAttribute('stroke', '#EA3C53');
+    } else {
+      circle.setAttribute('stroke', '#8785fd');
+    }
   },
   onPause() {},
   onResume() {},
