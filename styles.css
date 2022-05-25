@@ -1,0 +1,56 @@
+#container {
+  position: relative;
+}
+
+input {
+  background: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-size: 80px;
+  color: white;
+  width: 200px;
+  height: 100px;
+  text-align: center;
+
+  position: absolute;
+  top: 170px;
+  left: 150px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  width: 360px;
+  padding: 0;
+  margin-left: 70px;
+  top: 450px;
+}
+
+#buttons button {
+  width: 100px;
+  height: 40px;
+  border-radius: 50px;
+  color: white;
+  font-size: 14px;
+}
+
+#start {
+  background-color: #44448c;
+}
+
+#pause {
+  background-color: #4a1424;
+}
+
+#cancel {
+  background-color: #434343;
+}
+
+#resume {
+  background-color: #18172f;
+}
