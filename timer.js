@@ -18,15 +18,22 @@ class Timer {
   }
 
   start = () => {
-    if (this.startButton.innerText === 'Start') {
+    if (
+      this.startButton.innerText === 'Start' &&
+      this.startButton.id === 'start'
+    ) {
       if (this.onStart) {
         this.onStart(this.timeRemaining);
       }
-      this.tick();
-      this.interval = setInterval(this.tick, 50);
-      this.startButton.id = 'cancel';
-      this.startButton.innerText = 'Cancel';
-      this.pauseButton.style.display = '';
+      if (this.timeRemaining <= 0) {
+        alert('Please enter duration to start the timer!');
+      } else {
+        this.tick();
+        this.interval = setInterval(this.tick, 50);
+        this.startButton.id = 'cancel';
+        this.startButton.innerText = 'Cancel';
+        this.pauseButton.style.display = '';
+      }
     } else {
       this.cancel();
     }
@@ -37,14 +44,17 @@ class Timer {
       this.onCancel();
     }
     this.stopInterval();
-    this.durationInput.value = 0;
+    // this.durationInput.value = 0;
     this.startButton.setAttribute('id', 'start');
     this.startButton.innerText = 'Start';
     this.pauseButton.style.display = 'none';
   };
 
   pause = () => {
-    if (this.pauseButton.innerText === 'Pause') {
+    if (
+      this.pauseButton.innerText === 'Pause' &&
+      this.pauseButton.id === 'pause'
+    ) {
       this.stopInterval();
       if (this.onPause) {
         this.onPause();
